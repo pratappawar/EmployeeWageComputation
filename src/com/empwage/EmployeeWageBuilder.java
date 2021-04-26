@@ -9,6 +9,7 @@ public class EmployeeWageBuilder {
 		int wageperHr=20;
 		int FullDayHr=8;
 		int HalfDayHr=4;
+		int DayPerMonth=20;
 		double empCheck=Math.floor(Math.random()*10)%2;
 		if(empCheck==is_Full_Time) {
 			System.out.println("Employee is Present..");
@@ -22,10 +23,10 @@ public class EmployeeWageBuilder {
 		int myCheck=(int) empCheck;
 		switch(myCheck) {
 		case 0:
-			System.out.println("Employee is Absent !!");
+			System.out.println("Employee Monthly Half_Day Wage is="+(wageperHr*HalfDayHr)*DayPerMonth);
 			break;
 		case 1:
-			System.out.println("Employee is Present !!");
+			System.out.println("Employee Monthly Full Day Wage is="+(wageperHr*FullDayHr)*DayPerMonth);
 			break;
 		}
 			
