@@ -1,11 +1,13 @@
 package com.empwage;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 //defining interface computeEmpWage with empty body
 interface ComputeEmpWage {
 
 	public void addCompanyEmpWage(String company, int empRatePerHr, int workingDayPerMonth, int maxHrInMonth);
 	public void empWageCalculation();
+	public int getTotalEmpWage(String company);
 }
 
 //Declared class
@@ -40,24 +42,30 @@ public class EmployeeWageBuilder implements ComputeEmpWage {
 	public final static int IS_FULL_TIME = 1;
 	public final static int IS_PART_TIME = 0;
 	private ArrayList<CompanyEmpWage> companyWageList; // ArrayList Declaration for Multiple companies of type CompanyEmpWage
+	private HashMap<String,CompanyEmpWage>companyEmpWageMap=new HashMap<String,CompanyEmpWage>();
 
-	// Default constructor of EmployeeWageBuilder class and array initialization
+	// Default constructor of EmployeeWageBuilder class 
 	public EmployeeWageBuilder() {
 		companyWageList = new ArrayList<CompanyEmpWage>();
 	}
-
 	// Add companyEmpWage method to add company and passing parameter list
 	public void addCompanyEmpWage(String company, int empRatePerHr, int workingDayPerMonth, int maxHrInMonth) {
 		CompanyEmpWage companyWage = new CompanyEmpWage(company, empRatePerHr, workingDayPerMonth, maxHrInMonth);//passing parameter to constructor
 		companyWageList.add(companyWage);//adding Company wage object in the arraylist.
+		companyEmpWageMap.put(company, companyWage);// adding key as a company and value as companyWage
 	}
     //ArrayList Display Method  
 	public void empWageCalculation() {
 		for (int i = 0; i < companyWageList.size(); i++) {
 			CompanyEmpWage companyWage = companyWageList.get(i);
-			companyWage.setTotalEmpWage(this.empWageCalculation(companyWage));
+			companyWage.setTotalEmpWage(empWageCalculation(companyWage));
 			System.out.println("Arraylist Element:"+companyWage);
 		}
+	}
+	
+	//get the Total Wage when queried by Company
+	public int getTotalEmpWage(String company) {	
+		return companyEmpWageMap.get(company).totalEmpWage;
 	}
 	
     //Employee Wage Calculation method to calculate the Total EmpWage
@@ -94,5 +102,7 @@ public class EmployeeWageBuilder implements ComputeEmpWage {
 		empwagebuilder.addCompanyEmpWage("Vivo", 25, 5, 8);
 		empwagebuilder.addCompanyEmpWage("DELL", 30, 10, 7);
 		empwagebuilder.empWageCalculation();
+		System.out.println("----------------------------------------------------------");
+		System.out.println("Total wage for D-MART Company:"+empwagebuilder.getTotalEmpWage("D-MART"));//getting Total Emp Wage for querying company
 	}
 }
