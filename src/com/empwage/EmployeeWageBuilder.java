@@ -2,23 +2,23 @@ package com.empwage;
 
 public class EmployeeWageBuilder {
 
+	//declaring variables
 	public final static int IS_FULL_TIME = 1;
 	public final static int IS_PART_TIME = 0;
-
 	private final String company;
 	private final int empRatePerHr;
 	private final int workingDayPerMonth;
 	private final int maxHrInMonth;
 	private int totalEmpWage;
 
+	//parameterized constructor calling
 	public EmployeeWageBuilder(String company, int empRatePerHr, int workingDayPerMonth, int maxHrInMonth) {
-		super();
 		this.company = company;
 		this.empRatePerHr = empRatePerHr;
 		this.workingDayPerMonth = workingDayPerMonth;
 		this.maxHrInMonth = maxHrInMonth;
 	}
-
+    //method implementation
 	public void empWageCalculation() {
 		int empHrs = 0, totalEmpHrs = 0, totalWorkingDay = 0;
 		// Using switch Case
@@ -41,18 +41,19 @@ public class EmployeeWageBuilder {
 		}
 		totalEmpWage = totalEmpHrs * empRatePerHr;	
 	}
+	//to string method for displaying purpose
 	public String toString() {
 		return "[Total Emp Wage for: "+company+" is: " + totalEmpWage + "]";
 	}
 
 	public static void main(String[] args) {
 		System.out.println("Welcome to Employee Wage Computation !!");
-		EmployeeWageBuilder dmart = new EmployeeWageBuilder("D-MART", 20, 2, 10);
-		EmployeeWageBuilder jio = new EmployeeWageBuilder("JIO", 20, 2, 10);
-		dmart.empWageCalculation();
-		System.out.println(dmart);
-		jio.empWageCalculation();
-		System.out.println(jio);
+		EmployeeWageBuilder dmart = new EmployeeWageBuilder("D-MART", 20, 2, 10);//initialize object with parameter
+		EmployeeWageBuilder jio = new EmployeeWageBuilder("JIO", 20, 2, 10);//initialize object with parameter
+		dmart.empWageCalculation();//Method calling
+		System.out.println(dmart);//displaying dmart object
+		jio.empWageCalculation();//Method calling
+		System.out.println(jio);//displaying dmart object
 		
 	}
 }
