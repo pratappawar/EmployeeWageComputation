@@ -51,7 +51,7 @@ public class EmployeeWageBuilder implements ComputeEmpWage {
 		CompanyEmpWage companyWage = new CompanyEmpWage(company, empRatePerHr, workingDayPerMonth, maxHrInMonth);//passing parameter to constructor
 		companyWageList.add(companyWage);//adding Company wage object in the arraylist.
 	}
-
+    //ArrayList Display Method  
 	public void empWageCalculation() {
 		for (int i = 0; i < companyWageList.size(); i++) {
 			CompanyEmpWage companyWage = companyWageList.get(i);
@@ -59,7 +59,8 @@ public class EmployeeWageBuilder implements ComputeEmpWage {
 			System.out.println("Arraylist Element:"+companyWage);
 		}
 	}
-
+	
+    //Employee Wage Calculation method to calculate the Total EmpWage
 	public int empWageCalculation(CompanyEmpWage companyWage) {
 		int empHrs = 0, totalEmpHrs = 0, totalWorkingDay = 0;
 		// Using switch Case
@@ -78,9 +79,11 @@ public class EmployeeWageBuilder implements ComputeEmpWage {
 				break;
 			}
 			totalEmpHrs += empHrs;
-			System.out.println("Total Working Days: " + totalWorkingDay + " " + "Total EMP Hours:" + totalEmpHrs);
+			System.out.println("Total Working Days: " + totalWorkingDay + "  " + "Total EMP Hours:" + totalEmpHrs);
+			int dailyWage=empHrs*companyWage.empRatePerHr;
+			System.out.println("Daily Employee Wage:= "+dailyWage);//Daily Employee wage Along with Total EmpWage
 		}
-		return totalEmpHrs * companyWage.empRatePerHr;
+		return totalEmpHrs * companyWage.empRatePerHr;             //return total emp wage
 	}
 
 	public static void main(String[] args) {
