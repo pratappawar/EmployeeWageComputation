@@ -1,13 +1,14 @@
 package com.empwage;
 
 class CompanyEmpWage {
+	//Variable Declaration
 	public final String company;
 	public final int empRatePerHr;
 	public final int workingDayPerMonth;
 	public final int maxHrInMonth;
 	public int totalEmpWage;
 
-	// parameterized constructor calling
+    // parameterized constructor calling
 	public CompanyEmpWage(String company, int empRatePerHr, int workingDayPerMonth, int maxHrInMonth) {
 		this.company = company;
 		this.empRatePerHr = empRatePerHr;
@@ -19,14 +20,11 @@ class CompanyEmpWage {
 	public void setTotalEmpWage(int totalEmpWage) {
 		this.totalEmpWage = totalEmpWage;
 	}
-
 	// to string method to display purpose
 	public String toString() {
 		return "[Total Emp Wage for: " + company + " is: " + totalEmpWage + "]";
 	}
-
 }
-
 //Employee Wage Builder Class
 public class EmployeeWageBuilder {
 	// Variable Declaration
@@ -45,14 +43,14 @@ public class EmployeeWageBuilder {
 		companyWageArray[noOfCompany] = new CompanyEmpWage(company, empRatePerHr, workingDayPerMonth, maxHrInMonth);
 		noOfCompany++;
 	}
-
+    //display array
 	private void empWageCalculation() {
 		for (int i = 0; i < noOfCompany; i++) {
-			companyWageArray[i].setTotalEmpWage(this.empWageCalculation(companyWageArray[i]));
+			companyWageArray[i].setTotalEmpWage(empWageCalculation(companyWageArray[i]));
 			System.out.println(companyWageArray[i]);
 		}
 	}
-
+    //implementation of empWageCalculation method 
 	private int empWageCalculation(CompanyEmpWage companyWage) {
 		int empHrs = 0, totalEmpHrs = 0, totalWorkingDay = 0;
 		// Using switch Case
@@ -82,6 +80,6 @@ public class EmployeeWageBuilder {
 		empwagebuilder.addCompanyEmpWage("D-MART", 20, 2, 10);
 		empwagebuilder.addCompanyEmpWage("JIO", 20, 2, 10);
 		empwagebuilder.addCompanyEmpWage("Vivo", 25,5, 8);
-		empwagebuilder.empWageCalculation();
+		empwagebuilder.empWageCalculation();//Method calling
 	}
 }
