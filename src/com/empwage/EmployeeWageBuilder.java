@@ -7,6 +7,7 @@ class CompanyEmpWage {
 	public final int maxHrInMonth;
 	public int totalEmpWage;
 
+	// parameterized constructor calling
 	public CompanyEmpWage(String company, int empRatePerHr, int workingDayPerMonth, int maxHrInMonth) {
 		this.company = company;
 		this.empRatePerHr = empRatePerHr;
@@ -14,28 +15,32 @@ class CompanyEmpWage {
 		this.maxHrInMonth = maxHrInMonth;
 	}
 
+	// setters to set total Employee wage
 	public void setTotalEmpWage(int totalEmpWage) {
 		this.totalEmpWage = totalEmpWage;
 	}
 
+	// to string method to display purpose
 	public String toString() {
 		return "[Total Emp Wage for: " + company + " is: " + totalEmpWage + "]";
 	}
 
 }
 
+//Employee Wage Builder Class
 public class EmployeeWageBuilder {
-
+	// Variable Declaration
 	public final static int IS_FULL_TIME = 1;
 	public final static int IS_PART_TIME = 0;
-
 	private int noOfCompany = 0;
-	private CompanyEmpWage[] companyWageArray;
+	private CompanyEmpWage[] companyWageArray; // Array Declaration for Multiple companies
 
+	// Default constructor of EmployeeWageBuilder class and array initialization
 	public EmployeeWageBuilder() {
 		companyWageArray = new CompanyEmpWage[5];
 	}
 
+	// Add companyEmpWage method to add company and passing parameter list
 	private void addCompanyEmpWage(String company, int empRatePerHr, int workingDayPerMonth, int maxHrInMonth) {
 		companyWageArray[noOfCompany] = new CompanyEmpWage(company, empRatePerHr, workingDayPerMonth, maxHrInMonth);
 		noOfCompany++;
@@ -76,8 +81,7 @@ public class EmployeeWageBuilder {
 		EmployeeWageBuilder empwagebuilder = new EmployeeWageBuilder();
 		empwagebuilder.addCompanyEmpWage("D-MART", 20, 2, 10);
 		empwagebuilder.addCompanyEmpWage("JIO", 20, 2, 10);
-		empwagebuilder.addCompanyEmpWage("Vivo", 25, 15, 8);
+		empwagebuilder.addCompanyEmpWage("Vivo", 25,5, 8);
 		empwagebuilder.empWageCalculation();
-
 	}
 }
