@@ -3,12 +3,11 @@ import java.util.ArrayList;
 
 //defining interface computeEmpWage with empty body
 interface ComputeEmpWage {
-
 	public void addCompanyEmpWage(String company, int empRatePerHr, int workingDayPerMonth, int maxHrInMonth);
 	public void empWageCalculation();
 }
 
-//Declared class
+// class Declaration
 class CompanyEmpWage {
 	public final String company;
 	public final int empRatePerHr;
@@ -23,7 +22,6 @@ class CompanyEmpWage {
 		this.workingDayPerMonth = workingDayPerMonth;
 		this.maxHrInMonth = maxHrInMonth;
 	}
-
 	// setters to set total Employee wage
 	public void setTotalEmpWage(int totalEmpWage) {
 		this.totalEmpWage = totalEmpWage;
@@ -45,21 +43,20 @@ public class EmployeeWageBuilder implements ComputeEmpWage {
 	public EmployeeWageBuilder() {
 		companyWageList = new ArrayList<CompanyEmpWage>();
 	}
-
 	// Add companyEmpWage method to add company and passing parameter list
 	public void addCompanyEmpWage(String company, int empRatePerHr, int workingDayPerMonth, int maxHrInMonth) {
 		CompanyEmpWage companyWage = new CompanyEmpWage(company, empRatePerHr, workingDayPerMonth, maxHrInMonth);//passing parameter to constructor
 		companyWageList.add(companyWage);//adding Company wage object in the arraylist.
 	}
-
+	//Display ArrayList Element
 	public void empWageCalculation() {
 		for (int i = 0; i < companyWageList.size(); i++) {
 			CompanyEmpWage companyWage = companyWageList.get(i);
-			companyWage.setTotalEmpWage(this.empWageCalculation(companyWage));
+			companyWage.setTotalEmpWage(empWageCalculation(companyWage));
 			System.out.println("Arraylist Element:"+companyWage);
 		}
 	}
-
+	//implementation EmpWage Logic Using this method 
 	public int empWageCalculation(CompanyEmpWage companyWage) {
 		int empHrs = 0, totalEmpHrs = 0, totalWorkingDay = 0;
 		// Using switch Case
