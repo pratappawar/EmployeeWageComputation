@@ -1,5 +1,12 @@
 package com.empwage;
 
+//defining interface computeEmpWage with empty body
+interface ComputeEmpWage {
+	
+	public void addCompanyEmpWage(String company, int empRatePerHr, int workingDayPerMonth, int maxHrInMonth);
+	public void empWageCalculation();
+}
+
 class CompanyEmpWage {
 	public final String company;
 	public final int empRatePerHr;
@@ -27,33 +34,33 @@ class CompanyEmpWage {
 
 }
 
-//Employee Wage Builder Class
-public class EmployeeWageBuilder {
+//Employee Wage Builder Class implements interface
+public class EmployeeWageBuilder implements ComputeEmpWage {
 	// Variable Declaration
 	public final static int IS_FULL_TIME = 1;
 	public final static int IS_PART_TIME = 0;
 	private int noOfCompany = 0;
 	private CompanyEmpWage[] companyWageArray; // Array Declaration for Multiple companies
-
 	// Default constructor of EmployeeWageBuilder class and array initialization
+
 	public EmployeeWageBuilder() {
 		companyWageArray = new CompanyEmpWage[5];
 	}
 
 	// Add companyEmpWage method to add company and passing parameter list
-	private void addCompanyEmpWage(String company, int empRatePerHr, int workingDayPerMonth, int maxHrInMonth) {
+	public void addCompanyEmpWage(String company, int empRatePerHr, int workingDayPerMonth, int maxHrInMonth) {
 		companyWageArray[noOfCompany] = new CompanyEmpWage(company, empRatePerHr, workingDayPerMonth, maxHrInMonth);
 		noOfCompany++;
 	}
 
-	private void empWageCalculation() {
+	public void empWageCalculation() {
 		for (int i = 0; i < noOfCompany; i++) {
 			companyWageArray[i].setTotalEmpWage(this.empWageCalculation(companyWageArray[i]));
 			System.out.println(companyWageArray[i]);
 		}
 	}
 
-	private int empWageCalculation(CompanyEmpWage companyWage) {
+	public int empWageCalculation(CompanyEmpWage companyWage) {
 		int empHrs = 0, totalEmpHrs = 0, totalWorkingDay = 0;
 		// Using switch Case
 		while (totalEmpHrs < companyWage.maxHrInMonth && totalWorkingDay < companyWage.workingDayPerMonth) {
@@ -78,10 +85,11 @@ public class EmployeeWageBuilder {
 
 	public static void main(String[] args) {
 		System.out.println("Welcome to Employee Wage Computation !!");
-		EmployeeWageBuilder empwagebuilder = new EmployeeWageBuilder();
+		ComputeEmpWage empwagebuilder = new EmployeeWageBuilder(); // interface reference referencing class EmployeeWageBuilder object
 		empwagebuilder.addCompanyEmpWage("D-MART", 20, 2, 10);
 		empwagebuilder.addCompanyEmpWage("JIO", 20, 2, 10);
-		empwagebuilder.addCompanyEmpWage("Vivo", 25,5, 8);
+		empwagebuilder.addCompanyEmpWage("Vivo", 25, 5, 8);
+		empwagebuilder.addCompanyEmpWage("DELL", 30, 10, 7);
 		empwagebuilder.empWageCalculation();
 	}
 }
