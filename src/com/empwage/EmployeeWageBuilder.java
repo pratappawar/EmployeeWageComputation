@@ -6,7 +6,7 @@ interface ComputeEmpWage {
 	public void addCompanyEmpWage(String company, int empRatePerHr, int workingDayPerMonth, int maxHrInMonth);
 	public void empWageCalculation();
 }
-
+//class Declaration
 class CompanyEmpWage {
 	public final String company;
 	public final int empRatePerHr;
@@ -21,17 +21,14 @@ class CompanyEmpWage {
 		this.workingDayPerMonth = workingDayPerMonth;
 		this.maxHrInMonth = maxHrInMonth;
 	}
-
 	// setters to set total Employee wage
 	public void setTotalEmpWage(int totalEmpWage) {
 		this.totalEmpWage = totalEmpWage;
 	}
-
 	// to string method to display purpose
 	public String toString() {
 		return "[Total Emp Wage for: " + company + " is: " + totalEmpWage + "]";
 	}
-
 }
 
 //Employee Wage Builder Class implements interface
@@ -41,8 +38,8 @@ public class EmployeeWageBuilder implements ComputeEmpWage {
 	public final static int IS_PART_TIME = 0;
 	private int noOfCompany = 0;
 	private CompanyEmpWage[] companyWageArray; // Array Declaration for Multiple companies
+	
 	// Default constructor of EmployeeWageBuilder class and array initialization
-
 	public EmployeeWageBuilder() {
 		companyWageArray = new CompanyEmpWage[5];
 	}
@@ -52,14 +49,14 @@ public class EmployeeWageBuilder implements ComputeEmpWage {
 		companyWageArray[noOfCompany] = new CompanyEmpWage(company, empRatePerHr, workingDayPerMonth, maxHrInMonth);
 		noOfCompany++;
 	}
-
+	//Array Displaying
 	public void empWageCalculation() {
 		for (int i = 0; i < noOfCompany; i++) {
-			companyWageArray[i].setTotalEmpWage(this.empWageCalculation(companyWageArray[i]));
+			companyWageArray[i].setTotalEmpWage(empWageCalculation(companyWageArray[i]));
 			System.out.println(companyWageArray[i]);
 		}
 	}
-
+	//Implementation of empWageCalculationmethod
 	public int empWageCalculation(CompanyEmpWage companyWage) {
 		int empHrs = 0, totalEmpHrs = 0, totalWorkingDay = 0;
 		// Using switch Case
