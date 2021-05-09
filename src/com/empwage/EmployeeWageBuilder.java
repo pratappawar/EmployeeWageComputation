@@ -55,7 +55,7 @@ public class EmployeeWageBuilder implements ComputeEmpWage {
 	public void empWageCalculation() {
 		for (int i = 0; i < companyWageList.size(); i++) {
 			CompanyEmpWage companyWage = companyWageList.get(i);
-			companyWage.setTotalEmpWage(this.empWageCalculation(companyWage));
+			companyWage.setTotalEmpWage(empWageCalculation(companyWage));
 			System.out.println("Arraylist Element:"+companyWage);
 		}
 	}
